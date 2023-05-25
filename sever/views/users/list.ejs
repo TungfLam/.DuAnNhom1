@@ -1,0 +1,58 @@
+<%- include('../inc/top') %>
+    
+    <div class="col-12 col-md-7"><H1>User Management</H1></div>
+    <div class="col-12 col-md-5 align-self-center">
+        <form class="d-flex" role="search"  action="" method="post">
+            <input class="form-control me-2" name="searchusername" type="search" placeholder="search for users by username"
+                aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="col-12 ">
+        <table class="table table-hover table-primary ">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Passwd</th>
+                    <th>Email</th>
+                    <th>Avatar</th>
+                    <th>Phone number</th>
+                    <th>Address</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% listUS.forEach((objUS)=>{ %>
+                    <tr>
+                        <th><a class="text-decoration-none text-dark" href="/users/detail/<%= objUS._id %>"> <%= objUS.username %></a></th>
+                        <!-- <th>
+                            <% 
+                            if (objUS.type != null){ %>
+                                <%= objUS.type.name %>
+                                <%
+                            }
+                            %>
+                        </th> -->
+                        <th><%= objUS.email %></th>
+                        <th><img style="width: 50px; height: 50px;" src="<%= objUS.avatar %>"> </th>
+
+                        <th><%= objUS.phonenumber %></th>
+                        <th><%= objUS.address %></th>
+
+    
+    
+                        <!-- <th>
+                            <a href="/sanpham/edit/<%= objUS._id %>" class="btn btn-primary btn-sm"> Edit</a> |
+                            <a href="#" class="btn btn-danger btn-sm"> Del</a>
+                        </th> -->
+                        <th>
+                            <a href="/users/edit/<%= objUS._id %>" class="btn btn-primary btn-sm"> Edit</a> |
+                            <a href="/users/del/<%= objUS._id %>" class="btn btn-danger btn-sm"> Del</a>
+                        </th>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <%- include('../inc/bottom') %>

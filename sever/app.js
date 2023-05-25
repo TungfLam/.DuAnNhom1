@@ -3,9 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 var indexRouter = require('./routes/index');
+var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
+// var productRouter = require('./routes/sanpham');
+// var typeRouter = require('./routes/type');
+// var apiRouter = require('./routes/api');
 
 var app = express();
 
@@ -19,8 +26,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'duannhom16894152730tufchloe', // chuỗi ký tự đặc biệt để Session mã hóa, tự viết
+  resave: true,
+  saveUninitialized: true
+}));
+
+
 app.use('/', indexRouter);
+app.use('/login', loginRouter);
 app.use('/users', usersRouter);
+// app.use('/sanpham', productRouter);
+// app.use('/type', typeRouter);
+// app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -35,7 +53,14 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  if (req.originalUrl.indexOf('/api') == 0) {
+    res.json({
+      status: 0,
+      msg: err.message
+    });
+  } else {
+    res.render('error');
+  }
 });
 
 module.exports = app;
