@@ -1,0 +1,42 @@
+<%- include('../inc/top3') %>
+
+    <H1>Users details</H1>
+
+    <% if(msg.length> 0){ %>
+        <p class="alert alert-info">
+            <%= msg %>
+        </p>
+        <% } %>
+
+            <form action="" method="post">
+                <fieldset disabled>
+
+                    <label class="form-label">Tên đăng nhập</label>
+                    <input id="disabledTextInput" class="form-control" type="text" name="username"
+                        value="<%= objUS.username %>">
+
+                    <label class="form-label">Mật khẩu</label>
+                    <input id="disabledTextInput" class="form-control" type="number" name="passwd"
+                        value="<%= objUS.passwd %>">
+
+                    <label class="form-label">Email</label>
+                    <input id="disabledTextInput" class="form-control" type="text" name="email"
+                        value="<%= objUS.email %>">
+
+                    <label class="form-label">Ảnh đại diện</label>
+                    <img style="width: 150px; height: 150px;" src="<%= objUS.avata %>">
+                    <br>
+
+                    <label class="form-label">Số điện thoại</label>
+                    <input id="disabledTextInput" class="form-control" type="number" name="phonenumber"
+                        value="<%= objUS.phonenumber %>">
+
+                        <label class="form-label">Địa chỉ</label>
+                    <input id="disabledTextInput" class="form-control" type="text" name="address"
+                        value="<%= objUS.address %>">
+                    
+                </fieldset>
+            </form>
+
+
+            <%- include('../inc/bottom') %>

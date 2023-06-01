@@ -1,0 +1,38 @@
+<%- include('../inc/top') %>
+
+    <H1>Add users</H1>
+
+    <% if(msg.length > 0){ %>
+        <p class="alert alert-info">
+            <%= msg %>
+        </p>
+        <% } %>
+
+            <form action="" method="post"enctype="multipart/form-data">
+
+                <label class="form-label">Tên đăng nhập</label>
+                <input class="form-control" type="text" name="username">
+
+                <label class="form-label">Pass word</label>
+                <input class="form-control" type="text" name="passwd">
+
+                <label class="form-label">Email</label>
+                <input class="form-control" type="email" name="email">
+
+                <label class="form-label">Ảnh đại diện</label>
+                <input class="form-control" type="file" name="avata">
+
+                <label class="form-label">Số điện thoại</label>
+                <input class="form-control" type="number" name="phonenumber">
+
+                <label class="form-label">Địa chỉ</label>
+                <input class="form-control" type="text" name="address">
+
+               
+                
+                <div class="d-grid gap-2">
+                    <button class="btn btn-secondary mt-4 " type="submit">Add</button>
+                </div>
+            </form>
+
+    <%- include('../inc/bottom') %>

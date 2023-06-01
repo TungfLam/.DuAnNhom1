@@ -8,25 +8,25 @@ var uploadAvatarProduct = multer({dest: './tmp'});
 
 
 router.get('/',checklogin.noLoginRequired, userCtrl.list)
-// router.get('/add',checklogin.requiresLogin, userCtrl.add)
+router.get('/add',checklogin.noLoginRequired, userCtrl.add)
 
 
 // router.get('/add',checklogin.requiresLogin,userCtrl.add);
-// router.post('/add',uploadAvatarProduct.single("avatar"),checklogin.requiresLogin,userCtrl.add);
+router.post('/add',uploadAvatarProduct.single("avata"),checklogin.noLoginRequired,userCtrl.add);
 
 
-// router.get('/edit/:idus',checklogin.requiresLogin,userCtrl.editUs);
-// router.post('/edit/:idus',uploadAvatarProduct.single("avatar"),checklogin.requiresLogin,userCtrl.editUs);
+router.get('/edit/:idus',checklogin.noLoginRequired,userCtrl.editUs);
+router.post('/edit/:idus',uploadAvatarProduct.single("avata"),checklogin.noLoginRequired,userCtrl.editUs);
 
 // router.get('/:username',checklogin.requiresLogin,userCtrl.list);
 // router.post('/:username',checklogin.requiresLogin,userCtrl.list);
 
-// router.get('/del/:idusdel',checklogin.requiresLogin,userCtrl.delUers);
-// router.post('/del/:idusdel',checklogin.requiresLogin,userCtrl.delUers);
+router.get('/del/:idusdel',checklogin.noLoginRequired,userCtrl.delUers);
+router.post('/del/:idusdel',checklogin.noLoginRequired,userCtrl.delUers);
 
 
-// router.get('/detail/:idusdel',checklogin.requiresLogin,userCtrl.detailUser);
-// router.post('/detail/:idusdel',checklogin.requiresLogin,userCtrl.detailUser);
+router.get('/detail/:idusdel',checklogin.noLoginRequired,userCtrl.detailUser);
+router.post('/detail/:idusdel',checklogin.noLoginRequired,userCtrl.detailUser);
 
 
 

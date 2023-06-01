@@ -19,114 +19,119 @@ exports.list = async (req, res, next) => {
     res.render('users/list', { listUS: listUS, loc: dieu_kien_loc });
 
 }
-// exports.detailUser = async (req, res, next) => {
+exports.detailUser = async (req, res, next) => {
 
-//     let msg = '';
-//     let idusdel = req.params.idusdel;
+    let msg = '';
+    let idusdel = req.params.idusdel;
 
-//     try {
-//         var objUS = await myMD.userModel.findById(idusdel);
-//     } catch (error) {
-//         msg = 'Lỗi' + error.message;
+    try {
+        var objUS = await myMD.userModel.findById(idusdel);
+    } catch (error) {
+        msg = 'Lỗi' + error.message;
 
-//     }
+    }
 
-//     res.render('users/detail', { msg: msg, objUS: objUS });
+    res.render('users/detail', { msg: msg, objUS: objUS });
 
-// }
-// exports.add = async (req, res, next) => {
+}
+exports.add = async (req, res, next) => {
 
-//     let msg = '';
+    let msg = '';
 
-//     if (req.method == 'POST') {
-//         fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
-//         let url_file = '/uploads/' + req.file.originalname;
+    if (req.method == 'POST') {
+        fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
+        let url_file = '/uploads/' + req.file.originalname;
 
-//         let objUS = new myMD.userModel();
-//         objUS.username = req.body.username;
-//         objUS.avatar = url_file;
-//         objUS.email = req.body.email;
-//         objUS.passwd = req.body.passwd;
+        let objUS = new myMD.userModel();
+        objUS.username = req.body.username;
+        objUS.passwd = req.body.passwd;
+        objUS.email = req.body.email;
 
-//         try {
-//             let new_us = await objUS.save();
-//             console.log(new_us);
-//             msg = 'Đăng kí thành công';
+        objUS.avata = url_file;
+        objUS.phonenumber = req.body.phonenumber;
+        objUS.address = req.body.address;
 
-//         } catch (error) {
-//             msg = 'Lỗi' + error.message();
-//             console.log(err);
+        try {
+            let new_us = await objUS.save();
+            console.log(new_us);
+            msg = 'Đăng kí thành công';
 
-//         }
-//     }
-//     res.render('users/add', { msg: msg });
-// }
-// exports.editUs = async (req, res, next) => {
+        } catch (error) {
+            msg = 'Lỗi' + error.message();
+            console.log(err);
 
-//     let msg = '';
-//     let idus = req.params.idus;
+        }
+    }
+    res.render('users/add', { msg: msg });
+}
+exports.editUs = async (req, res, next) => {
 
-//     try {
-//         var objUS = await myMD.userModel.findById(idus);
-//     } catch (error) {
-//         msg = 'Lỗi' + error.message;
+    let msg = '';
+    let idus = req.params.idus;
 
-//     }
+    try {
+        var objUS = await myMD.userModel.findById(idus);
+    } catch (error) {
+        msg = 'Lỗi' + error.message;
 
-//     if (req.method == 'POST') {
-//         fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
-//         let url_file = '/uploads/' + req.file.originalname;
-//         let objUS = new myMD.userModel();
+    }
 
-//         objUS.username = req.body.username;
-//         objUS.avatar = url_file;
-//         objUS.email = req.body.email;
-//         objUS.passwd = req.body.passwd;
-//         objUS._id = idus;
+    if (req.method == 'POST') {
+        fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
+        let url_file = '/uploads/' + req.file.originalname;
+        let objUS = new myMD.userModel();
 
-
-//         try {
-
-//             await myMD.userModel.findByIdAndUpdate({ _id: idus, objUS }, objUS)
-//             msg = 'Đã sửa thành công'
+        objUS.username = req.body.username;
+        objUS.passwd = req.body.passwd;
+        objUS.email = req.body.email;
+        objUS.avata = url_file;
+        objUS.phonenumber = req.body.phonenumber;
+        objUS.address = req.body.address;
+        objUS._id = idus;
 
 
-//         } catch (error) {
-//             msg = 'Lỗi' + error.message();
-//             console.log(err);
+        try {
 
-//         }
-//     }
-//     res.render('users/edit', { msg: msg, objUS: objUS });
-// }
-// exports.delUers = async (req, res, next) => {
+            await myMD.userModel.findByIdAndUpdate({ _id: idus, objUS }, objUS)
+            msg = 'Đã sửa thành công'
 
-//     let msg = '';
-//     let msg2 = 'Tài khoản đã được xóa';
-//     let idusdel = req.params.idusdel;
 
-//     try {
-//         var objUS = await myMD.userModel.findById(idusdel);
-//         var name_username = objUS.username;
+        } catch (error) {
+            msg = 'Lỗi' + error.message();
+            console.log(err);
 
-//     } catch (error) {
-//         msg = 'Tài khoản đã được xóa'
-//     }
+        }
+    }
+    res.render('users/edit', { msg: msg, objUS: objUS });
+}
+exports.delUers = async (req, res, next) => {
 
-//     if (req.method == 'POST') {
+    let msg = '';
+    let msg2 = 'Tài khoản đã được xóa';
+    let idusdel = req.params.idusdel;
 
-//         let objUS = new myMD.userModel();
+    try {
+        var objUS = await myMD.userModel.findById(idusdel);
+        var name_username = objUS.username;
 
-//         objUS._id;
+    } catch (error) {
+        msg = 'Tài khoản đã được xóa'
+    }
 
-//         try {
-//             await myMD.userModel.findByIdAndDelete(idusdel);
-//             msg = 'Đã xóa thành công'
-//         } catch (error) {
-//             msg = 'Lỗi ' + error.message();
-//             console.log(err);
+    if (req.method == 'POST') {
 
-//         }
-//     }
-//     res.render('users/del', { msg: msg, msg2: msg2, name_username: name_username });
-// }
+        let objUS = new myMD.userModel();
+
+        objUS._id;
+
+        try {
+            await myMD.userModel.findByIdAndDelete(idusdel);
+            msg = 'Đã xóa thành công'
+        } catch (error) {
+            msg = 'Lỗi ' + error.message();
+            console.log(err);
+
+        }
+    }
+    res.render('users/del', { msg: msg, msg2: msg2, name_username: name_username });
+}
