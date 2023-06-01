@@ -1,0 +1,33 @@
+<%- include('../inc/top3') %>
+
+<H1>Delete user</H1>
+
+<% if(msg.length> 0){ %>
+    <p class="alert alert-info">
+            <%= msg %>
+    </p>
+    <% } %>
+
+        <form action="" method="post">
+            
+            <label class="form-label">Bạn chắc chắn muốn xóa tài khoản : <strong>
+                <% 
+                if (name_username != null){ %>
+                    <%= name_username %> 
+                    <%
+                }else{ %>
+                    <%= msg2 %>
+                    <%
+                }
+                %>
+            </strong>
+            </label>
+           
+            <div class="d-grid gap-2">
+                <button class="btn btn-secondary mt-4 "  type="submit">Delete</button>
+            </div>
+
+        </form>
+
+
+<%- include('../inc/bottom') %>
