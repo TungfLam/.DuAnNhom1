@@ -11,7 +11,7 @@ exports.list = async (req, res, next) => {
 
     var listUS = await myMD.userModel.find(dieu_kien_loc)
         // .populate('type')
-        .sort({ username: 1 }); 
+        .sort({ username: 1 });
 
     console.log(listUS);
 
@@ -77,8 +77,14 @@ exports.editUs = async (req, res, next) => {
     }
 
     if (req.method == 'POST') {
-        fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
-        let url_file = '/uploads/' + req.file.originalname;
+
+        try {
+            fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
+            var url_file = '/uploads/' + req.file.originalname;
+        } catch (error) {
+
+        }
+
         let objUS = new myMD.userModel();
 
         objUS.username = req.body.username;
