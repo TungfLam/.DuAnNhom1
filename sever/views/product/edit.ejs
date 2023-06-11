@@ -1,0 +1,50 @@
+<%- include('../inc/top3') %>
+
+<H1>Product Editing</H1>
+
+<% if(msg.length> 0){ %>
+    <p class="alert alert-info">
+        <%= msg %>
+    </p>
+    <% } %>
+
+        <form action="" method="post"  enctype="multipart/form-data">
+            
+            <label class="form-label">Tên sản phẩm</label>
+            <input class="form-control" type="text" name="name"value="<%= objPD.name %>">
+
+            <label class="form-label">Thể Loại</label>
+            <select  class="form-control" name="type" >
+                <% listTP.forEach( (objTP)=>{ 
+                    let selected = '';
+                    if(String( objTP._id ) == String(objPD.type) ){
+                        selected = '  selected ';
+                    }
+                    %>
+                    <option  <%= selected %> 
+                        value="<%= objTP._id %>"> <%= objTP.name %>  </option>
+                <%   } ) %>
+            </select>
+            <br>
+
+            <label class="form-label">Ảnh Cũ</label> 
+            <img style="width: 100px; height: 100px;" src="<%= objPD.avatar %>">
+            <br>
+
+            <label class="form-label">Ảnh sản phẩm</label>
+            <input class="form-control" type="file" name="avatar" src="<%= objPD.avatar %>" value="<%= objPD.avatar %>">
+           
+            <label class="form-label">Mô tả</label>
+            <input class="form-control" type="text" name="description" value="<%= objPD.description %>">
+
+            <label class="form-label">Giá sản phẩm</label>
+            <input class="form-control" type="number" name="price" value="<%= objPD.price %>">
+                
+            <div class="d-grid gap-2">
+                <button class="btn btn-secondary mt-4 "  type="submit">Update</button>
+            </div>
+
+        </form>
+
+
+<%- include('../inc/bottom') %>

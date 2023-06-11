@@ -10,7 +10,7 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
-// var productRouter = require('./routes/sanpham');
+var productRouter = require('./routes/sanpham');
 // var typeRouter = require('./routes/type');
 // var apiRouter = require('./routes/api');
 
@@ -36,7 +36,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/users', usersRouter);
-// app.use('/sanpham', productRouter);
+app.use('/sanpham', productRouter);
 // app.use('/type', typeRouter);
 // app.use('/api', apiRouter);
 

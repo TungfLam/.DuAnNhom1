@@ -1,0 +1,32 @@
+<%- include('../inc/top3') %>
+
+<H1>Delete product</H1>
+
+<% if(msg.length> 0){ %>
+    <p class="alert alert-info">
+            <%= msg %>
+    </p>
+    <% } %>
+
+        <form action="" method="post">
+            
+            <label class="form-label">Bạn chắc chắn muốn xóa sản phẩm : 
+                <% 
+                if (name_product != null){ %>
+                    <%= name_product %>
+                    <%
+                }else{ %>
+                    <%= msg2 %>
+                    <%
+                }
+                %>
+            </label>
+           
+            <div class="d-grid gap-2">
+                <button class="btn btn-secondary mt-4 "  type="submit">Delete</button>
+            </div>
+
+        </form>
+
+
+<%- include('../inc/bottom') %>
