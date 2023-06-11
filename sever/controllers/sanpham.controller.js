@@ -32,6 +32,8 @@ exports.add = async (req, res, next) => {
 
     let msg = '';
     let listTP = await myMD.typeModel.find();
+    let listCL = await myMD.colorModel.find();
+    let listSZ = await myMD.sizeModel.find();
 
     if (req.method == 'POST') {
 
@@ -40,16 +42,15 @@ exports.add = async (req, res, next) => {
 
         let objPD = new myMD.productModel();
         objPD.name = req.body.name;
-        objPD.avatar = url_file;
-        objPD.description = req.body.description;
+        objPD.avata = url_file;
+        objPD.introduction = req.body.introduction;
         objPD.price = req.body.price;
+        objPD.promotion = req.body.promotion;
         objPD.type = req.body.type;
+        objPD.color = req.body.color;
+        objPD.size = req.body.size;
+        objPD.quantity = req.body.quantity;
 
-        //     name: 
-        //     type: 
-        //     avatar: 
-        //     description:
-        //     price: 
 
         try {
 
@@ -64,7 +65,7 @@ exports.add = async (req, res, next) => {
 
         }
     }
-    res.render('sanpham/add', { msg: msg, listTP: listTP });
+    res.render('product/add', { msg: msg, listTP: listTP, listCL: listCL, listSZ: listSZ });
 }
 exports.detailProduct = async (req, res, next) => {
 
@@ -74,12 +75,14 @@ exports.detailProduct = async (req, res, next) => {
     try {
         var objPD = await myMD.productModel.findById(idpd);
         var listTP = await myMD.typeModel.find();
+        var listCL = await myMD.colorModel.find();
+        var listSZ = await myMD.sizeModel.find();
     } catch (error) {
         msg = 'Lỗi ' + error.message;
 
     }
 
-    res.render('sanpham/detail', { msg: msg, objPD: objPD, listTP: listTP });
+    res.render('product/detail', { msg: msg, objPD: objPD, listTP: listTP, listCL: listCL, listSZ: listSZ });
 }
 exports.editProduct = async (req, res, next) => {
 
@@ -90,32 +93,34 @@ exports.editProduct = async (req, res, next) => {
     try {
         var objPD = await myMD.productModel.findById(idpd);
         var listTP = await myMD.typeModel.find();
+        var listCL = await myMD.colorModel.find();
+        var listSZ = await myMD.sizeModel.find();
     } catch (error) {
         msg = 'Lỗi' + error.message;
 
     }
     if (req.method == 'POST') {
 
+        try {
             fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
-            let url_file = '/uploads/' + req.file.originalname;
-
+            var url_file = '/uploads/' + req.file.originalname;
+        } catch (error) {
+        }
 
 
         let objPD = new myMD.productModel();
 
         objPD.name = req.body.name;
-        objPD.avatar = url_file;
-        objPD.description = req.body.description;
-        objPD.type = req.body.type;
+        objPD.avata = url_file;
+        objPD.introduction = req.body.introduction;
         objPD.price = req.body.price;
+        objPD.promotion = req.body.promotion;
+        objPD.type = req.body.type;
+        objPD.color = req.body.color;
+        objPD.size = req.body.size;
+        objPD.quantity = req.body.quantity;
         objPD._id = idpd;
 
-
-        //     name: 
-        //     type: 
-        //     avatar: 
-        //     description:
-        //     price: 
 
         try {
 
@@ -129,7 +134,7 @@ exports.editProduct = async (req, res, next) => {
 
         }
     }
-    res.render('sanpham/edit', { msg: msg, objPD: objPD, listTP: listTP });
+    res.render('product/edit', { msg: msg, objPD: objPD, listTP: listTP, listCL: listCL, listSZ: listSZ });
 }
 exports.delProduct = async (req, res, next) => {
 
@@ -159,5 +164,5 @@ exports.delProduct = async (req, res, next) => {
 
         }
     }
-    res.render('sanpham/del', { msg: msg, msg2: msg2, name_product: name_product });
+    res.render('product/del', { msg: msg, msg2: msg2, name_product: name_product });
 }
