@@ -1,4 +1,5 @@
-var md = require('../../models/user.model')
+var md = require('../../models/user.model');
+const { updateProduct } = require('./api-store');
 var objReturn = {
     status: 1,
     msg: 'OK'
@@ -33,16 +34,24 @@ exports.addUser = async (req, res, next) => {
 
     res.json(objReturn);
 }
-exports.updateUser = (req, res, next) => {
+exports.updateUser = async (req, res, next) => {
 
-
-
+    // const updataUser = req.body;
+    // const post = md.userModel.findByIdAndUpdate(
+    //     { _id: updataUser._id },
+    //     updateProduct,
+    //     { new: true });
 
     res.json(objReturn);
 }
 exports.deleteUser = async (req, res, next) => {
-    // const idusdel = req.params._id
-    // const userModel = md.userModel();
-    // await userModel.findByIdAndDelete(idusdel);
+    
+
+    // const delUser = req.body;
+    // const post = md.userModel.findByIdAndDelete(
+    //     { _id: delUser._id },
+    //     updateProduct,
+    //     { new: true });
+
     res.json(objReturn);
 };
