@@ -37,32 +37,43 @@ exports.detailUser = async (req, res, next) => {
 exports.add = async (req, res, next) => {
 
     let msg = '';
+    let msgerror = '';
 
     if (req.method == 'POST') {
-        fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
-        let url_file = '/uploads/' + req.file.originalname;
 
+        let objU = await myMD.userModel.findOne({ username: req.body.username });
+
+        try {
+            fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
+            var url_file = '/uploads/' + req.file.originalname;
+        } catch (error) { }
         let objUS = new myMD.userModel();
         objUS.username = req.body.username;
         objUS.passwd = req.body.passwd;
         objUS.email = req.body.email;
-
         objUS.avata = url_file;
         objUS.phonenumber = req.body.phonenumber;
         objUS.address = req.body.address;
 
-        try {
-            let new_us = await objUS.save();
-            console.log(new_us);
-            msg = 'Đăng kí thành công';
 
-        } catch (error) {
-            msg = 'Lỗi' + error.message();
-            console.log(err);
+        if (objU != null) {
+            msgerror = 'Tài khoản đã tồn tại';
+            res.render('users/add', { msg: msg, msgerror: msgerror });
 
+        } else {
+            try {
+                let new_us = await objUS.save();
+                console.log(new_us);
+                msg = 'Đăng kí thành công';
+
+            } catch (error) {
+                msg = 'Lỗi' + error.message();
+                console.log(err);
+            }
         }
     }
-    res.render('users/add', { msg: msg });
+
+    res.render('users/add', { msg: msg, msgerror: msgerror });
 }
 exports.editUs = async (req, res, next) => {
 
