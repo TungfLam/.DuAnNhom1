@@ -30,15 +30,20 @@ exports.list = async (req, res, next) => {
 }
 exports.add = async (req, res, next) => {
 
-    let msg = '';
+    var msg = '';
     let listTP = await myMD.typeModel.find();
     let listCL = await myMD.colorModel.find();
     let listSZ = await myMD.sizeModel.find();
 
     if (req.method == 'POST') {
 
-        fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
-        let url_file = '/uploads/' + req.file.originalname;
+        try {
+            fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
+            var url_file = '/uploads/' + req.file.originalname;
+        } catch (error) {
+
+        }
+
 
         let objPD = new myMD.productModel();
         objPD.name = req.body.name;
@@ -53,7 +58,6 @@ exports.add = async (req, res, next) => {
 
 
         try {
-
 
             let new_sp = await objPD.save();
             console.log(new_sp);

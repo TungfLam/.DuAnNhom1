@@ -6,10 +6,10 @@ exports.Login = async (req, res, next) => {
     if (req.method == 'POST') {
 
         try {
-            let objU = await myMD.userModel.findOne({ username: req.body.username });
+            let objU = await myMD.adminModel.findOne({ username: req.body.username });
             console.log(objU);
             console.log(req.body.username);
-            console.log(objU.passwd+"pass ưd");
+            console.log("passwd : "+objU.passwd);
          
             if (objU != null) {
                 // tồn tại username ==> kiểm tra paswd
@@ -32,8 +32,7 @@ exports.Login = async (req, res, next) => {
 
 
         } catch (error) {
-            msg = 'Lỗi' + error.message;
-
+            msg = 'Thông tin tài khoản hoặc mật khẩu không chính xác';
         }
     }
 

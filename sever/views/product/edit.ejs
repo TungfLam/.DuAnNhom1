@@ -11,7 +11,7 @@
         <form action="" method="post"  enctype="multipart/form-data">
             
             <label class="form-label">Tên sản phẩm</label>
-            <input class="form-control" type="text" name="name"value="<%= objPD.name %>">
+            <input class="form-control" type="text" name="name"value="<%= objPD.name %>" required>
 
             <label class="form-label">Ảnh Cũ</label> 
             <img style="width: 100px; height: 100px;" src="<%= objPD.avata %>">
@@ -23,9 +23,9 @@
             <input class="form-control" type="text" name="introduction"value="<%= objPD.introduction %>">
 
             <label class="form-label">Giá sản phẩm</label>
-            <input class="form-control" type="number" name="price" value="<%= objPD.price %>">
+            <input class="form-control" type="number" name="price" value="<%= objPD.price %>" required  pattern="\S+">
 
-            <label class="form-label">Khuyến mãi</label>
+            <label class="form-label">Khuyến mãi %</label>
             <input class="form-control" type="number" name="promotion" value="<%= objPD.promotion %>">
 
             <label class="form-label">Thể Loại</label>
@@ -71,7 +71,7 @@
             <br>
 
             <label class="form-label">Số lượng</label>
-            <input class="form-control" type="number" name="quantity" value="<%= objPD.quantity %>">        
+            <input class="form-control" type="number" name="quantity" value="<%= objPD.quantity %>" required  pattern="\S+">        
                 
             <div class="d-grid gap-2">
                 <button class="btn btn-secondary mt-4 "  type="submit">Update</button>

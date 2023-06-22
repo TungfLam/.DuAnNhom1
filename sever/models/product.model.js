@@ -7,9 +7,9 @@ const productSchema = new db.mongoose.Schema(
         color: { type: db.mongoose.Schema.Types.ObjectId, ref: 'colorModel' },
         
         avata: { type: String, required: false },
-        introduction: { type: String, required: true },
+        introduction: { type: String, required: false },
         price: { type: Number, required: true },
-        promotion: { type: Number, required: true },
+        promotion: { type: Number, required: false },
         quantity: { type: Number, required: true }
 
     },
