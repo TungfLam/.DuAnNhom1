@@ -1,0 +1,59 @@
+<%- include('../inc/top') %>
+
+    <H1>More Products</H1>
+
+    <% if(msg.length > 0){ %>
+        <p class="alert alert-info">
+            <%= msg %>
+        </p>
+        <% } %>
+
+            <form action="" method="post" enctype="multipart/form-data">
+
+                <label class="form-label">Tên sản phẩm</label>
+                <input class="form-control" type="text" name="name" required>
+
+                <label class="form-label">Ảnh sản phẩm</label>
+                <input class="form-control" type="file" name="avata">
+
+                <label class="form-label">Giới thiệu</label>
+                <input class="form-control" type="text" name="introduction">
+
+                <label class="form-label">Giá sản phẩm</label>
+                <input class="form-control" type="number" name="price" required  pattern="\S+">
+
+                <label class="form-label">Khuyến mãi %</label>
+                <input class="form-control" type="number" name="promotion">
+
+                <label class="form-label">Số lượng sản phẩm</label>
+                <input class="form-control" type="number" name="quantity" required  pattern="\S+">
+
+
+                <label class="form-label">Thể Loại</label>
+                <select class="form-control" name="type">
+                    <% listTP.forEach( row => {  %>
+                    <option value="<%= row._id %>"><%= row.name %></option>
+                    <% }) %>
+                </select>
+                <br>
+                <label class="form-label">Màu</label>
+                <select class="form-control" name="color">
+                    <% listCL.forEach( row => {  %>
+                    <option value="<%= row._id %>"><%= row.name %></option>
+                    <% }) %>
+                </select>
+                <br>
+                <label class="form-label">Kích cỡ</label>
+                <select class="form-control" name="size">
+                    <% listSZ.forEach( row => {  %>
+                    <option value="<%= row._id %>"><%= row.name %></option>
+                    <% }) %>
+                </select>
+                <br>
+                
+                <div class="d-grid gap-2">
+                    <button class="btn btn-secondary mt-4 " type="submit">Add</button>
+                </div>
+            </form>
+
+    <%- include('../inc/bottom') %>

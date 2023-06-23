@@ -1,0 +1,89 @@
+<%- include('../inc/top3') %>
+
+    <H1>Product details</H1>
+
+    <% if(msg.length> 0){ %>
+        <p class="alert alert-info">
+            <%= msg %>
+        </p>
+        <% } %>
+
+            <form action="" method="post">
+                <fieldset disabled>
+
+                    <label class="form-label">Ảnh sản phẩm</label>
+                    <img style="width: 150px; height: 150px;" src="<%= objPD.avata %>">
+                    <br>
+
+                    <label class="form-label">Tên sản phẩm</label>
+                    <input id="disabledTextInput" class="form-control" type="text" name="name"
+                        value="<%= objPD.name %>">
+
+                    <label class="form-label">Giới thiệu</label>
+                    <input id="disabledTextInput" class="form-control" type="text" name="introduction"
+                        value="<%= objPD.introduction %>">
+
+                    <label class="form-label">Giá sản phẩm</label>
+                    <input id="disabledTextInput" class="form-control" type="number" name="price"
+                        value="<%= objPD.price %>">
+
+                    <label class="form-label">Khuyến mãi %</label>
+                    <input id="disabledTextInput" class="form-control" type="number" name="promotion"
+                        value="<%= objPD.promotion %>">
+
+
+
+
+                    <label class="form-label">Thể Loại</label>
+                    <select class="form-control" name="type">
+                        <% listTP.forEach( (objTP)=>{
+                            let selected = '';
+                            if(String( objTP._id ) == String(objPD.type) ){
+                            selected = ' selected ';
+                            }
+                            %>
+                            <option <%=selected %>
+                                value="<%= objTP._id %>"> <%= objTP.name %>
+                            </option>
+                            <% } ) %>
+                    </select>
+                    <br>
+
+                    <label class="form-label">Màu</label>
+                    <select class="form-control" name="color">
+                        <% listCL.forEach( (objTP)=>{
+                            let selected = '';
+                            if(String( objTP._id ) == String(objPD.color) ){
+                            selected = ' selected ';
+                            }
+                            %>
+                            <option <%=selected %>
+                                value="<%= objTP._id %>"> <%= objTP.name %>
+                            </option>
+                            <% } ) %>
+                    </select>
+                    <br>
+
+                    <label class="form-label">Kích cỡ</label>
+                    <select class="form-control" name="size">
+                        <% listSZ.forEach( (objTP)=>{
+                            let selected = '';
+                            if(String( objTP._id ) == String(objPD.size) ){
+                            selected = ' selected ';
+                            }
+                            %>
+                            <option <%=selected %>
+                                value="<%= objTP._id %>"> <%= objTP.name %>
+                            </option>
+                            <% } ) %>
+                    </select>
+                    <br>
+
+                    <label class="form-label">Số lượng</label>
+                    <input id="disabledTextInput" class="form-control" type="number" name="quantity"
+                        value="<%= objPD.quantity %>">
+                </fieldset>
+            </form>
+
+
+            <%- include('../inc/bottom') %>
