@@ -1,83 +1,89 @@
 <%- include('../inc/top3') %>
 
-<H1>Product Editing</H1>
+    <H1>Product Editing</H1>
 
-<% if(msg.length> 0){ %>
-    <p class="alert alert-info">
-        <%= msg %>
-    </p>
-    <% } %>
+    <% if(msg.length> 0){ %>
+        <p class="alert alert-info">
+            <%= msg %>
+        </p>
+        <% } %>
 
-        <form action="" method="post"  enctype="multipart/form-data">
-            
-            <label class="form-label">Tên sản phẩm</label>
-            <input class="form-control" type="text" name="name"value="<%= objPD.name %>" required>
+            <form action="" method="post" enctype="multipart/form-data">
 
-            <label class="form-label">Ảnh Cũ</label> 
-            <img style="width: 100px; height: 100px;" src="<%= objPD.avata %>">
-            <br>
-            <label class="form-label">Ảnh sản phẩm</label>
-            <input class="form-control" type="file" name="avata" src="<%= objPD.avata %>" value="<%= objPD.avata %>">
-           
-            <label class="form-label">Giới thiệu</label>
-            <input class="form-control" type="text" name="introduction"value="<%= objPD.introduction %>">
+                <label class="form-label">Ảnh Cũ</label>
+                <img style="width: 150px; height: 150px;" src="<%= objPD.avata %>">
+                <br>
+                <label class="form-label">Ảnh sản phẩm</label>
+                <input class="form-control" type="file" name="avata" src="<%= objPD.avata %>"
+                    value="<%= objPD.avata %>">
 
-            <label class="form-label">Giá sản phẩm</label>
-            <input class="form-control" type="number" name="price" value="<%= objPD.price %>" required  pattern="\S+">
+                <label class="form-label">Tên sản phẩm</label>
+                <input class="form-control" type="text" name="name" value="<%= objPD.name %>" required>
 
-            <label class="form-label">Khuyến mãi %</label>
-            <input class="form-control" type="number" name="promotion" value="<%= objPD.promotion %>">
+                <label class="form-label">Giới thiệu</label>
+                <input class="form-control" type="text" name="introduction" value="<%= objPD.introduction %>">
 
-            <label class="form-label">Thể Loại</label>
-            <select  class="form-control" name="type" >
-                <% listTP.forEach( (objTP)=>{ 
-                    let selected = '';
-                    if(String( objTP._id ) == String(objPD.type) ){
-                        selected = '  selected ';
-                    }
-                    %>
-                    <option  <%= selected %> 
-                        value="<%= objTP._id %>"> <%= objTP.name %>  </option>
-                <%   } ) %>
-            </select>
-            <br>
+                <label class="form-label">Giá sản phẩm</label>
+                <input class="form-control" type="number" name="price" value="<%= objPD.price %>" required
+                    pattern="\S+">
 
-            <label class="form-label">Màu</label>
-            <select  class="form-control" name="color" >
-                <% listCL.forEach( (objTP)=>{ 
-                    let selected = '';
-                    if(String( objTP._id ) == String(objPD.color) ){
-                        selected = '  selected ';
-                    }
-                    %>
-                    <option  <%= selected %> 
-                        value="<%= objTP._id %>"> <%= objTP.name %>  </option>
-                <%   } ) %>
-            </select>
-            <br>
-            
-            <label class="form-label">Kích cỡ</label>
-            <select  class="form-control" name="size" >
-                <% listSZ.forEach( (objTP)=>{ 
-                    let selected = '';
-                    if(String( objTP._id ) == String(objPD.size) ){
-                        selected = '  selected ';
-                    }
-                    %>
-                    <option  <%= selected %> 
-                        value="<%= objTP._id %>"> <%= objTP.name %>  </option>
-                <%   } ) %>
-            </select>
-            <br>
+                <label class="form-label">Khuyến mãi %</label>
+                <input class="form-control" type="number" name="promotion" value="<%= objPD.promotion %>">
 
-            <label class="form-label">Số lượng</label>
-            <input class="form-control" type="number" name="quantity" value="<%= objPD.quantity %>" required  pattern="\S+">        
-                
-            <div class="d-grid gap-2">
-                <button class="btn btn-secondary mt-4 "  type="submit">Update</button>
-            </div>
+                <label class="form-label">Thể Loại</label>
+                <select class="form-control" name="type">
+                    <% listTP.forEach( (objTP)=>{
+                        let selected = '';
+                        if(String( objTP._id ) == String(objPD.type) ){
+                        selected = ' selected ';
+                        }
+                        %>
+                        <option <%=selected %>
+                            value="<%= objTP._id %>"> <%= objTP.name %>
+                        </option>
+                        <% } ) %>
+                </select>
+                <br>
 
-        </form>
+                <label class="form-label">Màu</label>
+                <select class="form-control" name="color">
+                    <% listCL.forEach( (objTP)=>{
+                        let selected = '';
+                        if(String( objTP._id ) == String(objPD.color) ){
+                        selected = ' selected ';
+                        }
+                        %>
+                        <option <%=selected %>
+                            value="<%= objTP._id %>"> <%= objTP.name %>
+                        </option>
+                        <% } ) %>
+                </select>
+                <br>
+
+                <label class="form-label">Kích cỡ</label>
+                <select class="form-control" name="size">
+                    <% listSZ.forEach( (objTP)=>{
+                        let selected = '';
+                        if(String( objTP._id ) == String(objPD.size) ){
+                        selected = ' selected ';
+                        }
+                        %>
+                        <option <%=selected %>
+                            value="<%= objTP._id %>"> <%= objTP.name %>
+                        </option>
+                        <% } ) %>
+                </select>
+                <br>
+
+                <label class="form-label">Số lượng</label>
+                <input class="form-control" type="number" name="quantity" value="<%= objPD.quantity %>" required
+                    pattern="\S+">
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-secondary mt-4 " type="submit">Update</button>
+                </div>
+
+            </form>
 
 
-<%- include('../inc/bottom') %>
+            <%- include('../inc/bottom') %>

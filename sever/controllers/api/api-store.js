@@ -24,9 +24,12 @@ exports.listProduct = async (req, res, next) => {
 
     res.json(objReturn);
 }
-exports.addProduct = (req, res, next) => {
+exports.addProduct = async (req, res, next) => {
 
 
+    const product = req.body;
+    const newProduct = md.productModel(product);
+    await newProduct.save();
 
 
     res.json(objReturn);

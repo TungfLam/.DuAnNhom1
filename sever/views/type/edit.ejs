@@ -1,0 +1,23 @@
+<%- include('../inc/top3') %>
+
+<H1>Type Editing</H1>
+
+<% if(msg.length> 0){ %>
+    <p class="alert alert-info">
+        <%= msg %>
+    </p>
+    <% } %>
+
+        <form action="" method="post">
+            
+            <label class="form-label">Tên Loại</label>
+            <input class="form-control" type="text" name="name"value="<%= objTP.name %>" required>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-secondary mt-4 "  type="submit">Update</button>
+            </div>
+
+        </form>
+
+
+<%- include('../inc/bottom') %>

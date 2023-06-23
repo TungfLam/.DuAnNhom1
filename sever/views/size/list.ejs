@@ -1,0 +1,26 @@
+<%- include('../inc/top') %>
+
+    <H1>Size Management</H1>
+    <table class="table table-hover table-warning ">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% listTP.forEach((objTP)=>{ %>
+                <th>
+                    <%= objTP.name %>
+                </th>
+
+                <th>
+                    <a href="/size/edit/<%= objTP._id %>" class="btn btn-primary btn-sm"> Edit</a> |
+                    <a href="/size/del/<%= objTP._id %>" class="btn btn-danger btn-sm"> Del</a>
+                </th>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+    <%- include('../inc/bottom') %>
