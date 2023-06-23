@@ -1,0 +1,20 @@
+<%- include('../inc/top') %>
+
+    <H1>Add type</H1>
+
+    <% if(msg.length > 0){ %>
+        <p class="alert alert-info">
+            <%= msg %>
+        </p>
+        <% } %>
+            <form action="" method="post">
+
+                <label class="form-label">Tên loại</label>
+                <input class="form-control" type="text" name="name" required>
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-secondary mt-4 " type="submit">Add</button>
+                </div>
+            </form>
+
+    <%- include('../inc/bottom') %>

@@ -5,13 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/sanpham');
-// var typeRouter = require('./routes/type');
+var typeRouter = require('./routes/type');
+var colorRouter = require('./routes/color');
+var sizeRouter = require('./routes/size');
 var apiRouter = require('./routes/api');
 
 var app = express();
@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'duannhom16894152730tufchloe', // chuỗi ký tự đặc biệt để Session mã hóa, tự viết
+  secret: 'duannhom16894152730tufchloe',
   resave: true,
   saveUninitialized: true
 }));
@@ -37,7 +37,9 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/users', usersRouter);
 app.use('/sanpham', productRouter);
-// app.use('/type', typeRouter);
+app.use('/type', typeRouter);
+app.use('/color', colorRouter);
+app.use('/size', sizeRouter);
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler

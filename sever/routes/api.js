@@ -10,7 +10,7 @@ router.delete('/users/:idu',api_users.deleteUser);
 
 
 router.get('/product',api_store.listProduct);           
-// router.post('/product',api_store.addProlistProduct);           
+router.post('/product',api_store.addProduct);           
 // router.put('/product/:idp',api_store.updateProlistProduct);    
 // router.delete('/product/:idp',api_store.deleteProlistProduct); 
 
