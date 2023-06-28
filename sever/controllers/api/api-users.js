@@ -36,11 +36,12 @@ exports.addUser = async (req, res, next) => {
 }
 exports.updateUser = async (req, res, next) => {
 
-    // const updataUser = req.body;
-    // const post = md.userModel.findByIdAndUpdate(
-    //     { _id: updataUser._id },
-    //     updateProduct,
-    //     { new: true });
+    try {
+        const user = await md.userModel.findByIdAndUpdate(req.params.idu, req.body, { new: true });
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+      }
 
     res.json(objReturn);
 }
