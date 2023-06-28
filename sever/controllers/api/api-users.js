@@ -26,11 +26,14 @@ exports.listUser = async (req, res, next) => {
     res.json(objReturn);
 }
 exports.addUser = async (req, res, next) => {
-
-    const user = req.body;
-    const newUser = md.userModel(user);
-    await newUser.save();
-
+    try {
+        const user = req.body;
+        const newUser = md.userModel(user);
+        await newUser.save();
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
 
     res.json(objReturn);
 }
@@ -38,21 +41,21 @@ exports.updateUser = async (req, res, next) => {
 
     try {
         const user = await md.userModel.findByIdAndUpdate(req.params.idu, req.body, { new: true });
-      } catch (err) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
-      }
+    }
 
     res.json(objReturn);
 }
 exports.deleteUser = async (req, res, next) => {
-    
 
-    // const delUser = req.body;
-    // const post = md.userModel.findByIdAndDelete(
-    //     { _id: delUser._id },
-    //     updateProduct,
-    //     { new: true });
+    try {
+        const user = await md.userModel.findByIdAndDelete(req.params.idu);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
 
     res.json(objReturn);
 };
