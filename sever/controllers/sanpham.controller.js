@@ -7,7 +7,6 @@ exports.list = async (req, res, next) => {
     if (typeof (req.query.price) != 'undefined') {
         dieu_kien_loc = { price: req.query.price };
     }
-
     var listPD = await myMD.productModel.find(dieu_kien_loc)
         .populate('type')
         .populate('color')
@@ -21,8 +20,6 @@ exports.list = async (req, res, next) => {
     //     dieu_kien_loc = req.body.searchname;
     //     var listPD = await myMD.productModel.find(dieu_kien_loc);
     //     res.render('sanpham/list', { listPD: listPD });
-
-
     // }
 
     res.render('product/list', { listPD: listPD });
@@ -36,7 +33,6 @@ exports.add = async (req, res, next) => {
     let listSZ = await myMD.sizeModel.find();
 
     if (req.method == 'POST') {
-
         try {
             fs.renameSync(req.file.path, './public/uploads/' + req.file.originalname);
             var url_file = '/uploads/' + req.file.originalname;

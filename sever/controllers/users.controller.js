@@ -19,6 +19,7 @@ exports.list = async (req, res, next) => {
     res.render('users/list', { listUS: listUS, loc: dieu_kien_loc });
 
 }
+
 exports.detailUser = async (req, res, next) => {
 
     let msg = '';
